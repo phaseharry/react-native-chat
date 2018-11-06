@@ -20,6 +20,14 @@ export const loadMessages = () => {
   }
 }
 
+export const postMessage = (message) => {
+  return dispatch => {
+    return axios.post('https://voice21.herokuapp.com/api/messages/', { message })
+    .then(response => response.data)
+    .then(message => dispatch(_writeMessage(message)))
+  }
+}
+
 const messagesReducer = (state= [], action) => {
   switch(action.type){
     case WRITE_MESSAGE:
