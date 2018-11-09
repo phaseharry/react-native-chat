@@ -9,6 +9,6 @@ const reducer = combineReducers({
   auth: authReducer
 })
 
-const store = createStore(reducer, applyMiddleware(logger, thunk))
+const store = createStore(reducer, applyMiddleware(thunk))
 
 export default store

@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux'
 import { loadMessages } from '../store/messages'
 
-import Message from './IndividualMessage'
+import Messages from './Messages'
 import TextBox from './TextBox.js'
 
 class Main extends React.Component{
@@ -11,17 +11,11 @@ class Main extends React.Component{
     return this.props.getMessages()
   }
   render(){
-    const { messages } = this.props
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-      {
-        messages.map(message => {
-          return <Message key={message.id} message={message.message} author={message.user}/>
-          
-        })
-      }
-      <TextBox />
-      </ScrollView>
+        <View contentContainerStyle={styles.container}>
+          <Messages/>
+          <TextBox />
+        </View>
     )
   }
 }
@@ -35,18 +29,10 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const mapStateToProps = state => {
-  return {
-    messages: state.messages
-  }
-}
-
-
 const mapDispatchToProps = dispatch => {
   return {
     getMessages: () => dispatch(loadMessages())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(null, mapDispatchToProps)(Main)

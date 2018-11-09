@@ -18,15 +18,16 @@ class TextBox extends React.Component{
   handleSubmit(){
     const { postMessage } = this.props
     const { text } = this.state
-    postMessage(text)
-    this.setState({text: ''})
+    return postMessage(text)
+    .then(() => this.setState({text: ''}))
   }
   render(){
     const { handleChange, handleSubmit } = this
+    const { text } = this.state
     return (
       <View>
-        <TextInput placeholder='Type your heart out...' onChangeText={(text) => handleChange(text)}></TextInput>
-        <Button onPress={handleSubmit} title='Send'></Button>
+        <TextInput placeholder='Type your heart out...' value={text} onChangeText={(text) => handleChange(text)}></TextInput>
+        <Button onPress={handleSubmit} title='Send' disabled={text? false : true}></Button>
       </View>
     )
   }
