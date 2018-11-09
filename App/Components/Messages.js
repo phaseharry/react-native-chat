@@ -9,26 +9,13 @@ class Messages extends React.Component{
       <View>
          <FlatList 
           data={messages} 
-          renderItem={({ item }) => <Text>{ item.message }</Text> }
-          keyExtractor={ (item) => item.id }
+          renderItem={({ item }) => <Text>}>{ item.message }</Text> }
+          keyExtractor={ (item) => item.message}
           />
       </View>
     )
   }
 }
- <FlatList
-data={[
-  {key: 'Devin'},
-  {key: 'Jackson'},
-  {key: 'James'},
-  {key: 'Joel'},
-  {key: 'John'},
-  {key: 'Jillian'},
-  {key: 'Jimmy'},
-  {key: 'Julie'},
-]}
-renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-/> 
 
 const mapStateToProps = state => {
   return {
