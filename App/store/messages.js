@@ -23,9 +23,13 @@ export const loadMessages = () => {
 
 export const postMessage = (message) => {
   return async dispatch => {
-    const response = await axios.post('https://voice21.herokuapp.com/api/messages/', { message })
-    dispatch(_writeMessage(response.data))
-    socket.emit('new-message', response.data)
+    try {
+      const response = await axios.post('https://voice21.herokuapp.com/api/messages/', { message })
+      dispatch(_writeMessage(response.data))
+      socket.emit('new-message', response.data)
+    } catch(err){
+      console.log(err)
+    }
   }
 }
 
